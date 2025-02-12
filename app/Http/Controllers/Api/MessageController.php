@@ -24,7 +24,7 @@ class MessageController extends Controller
     
         // return MessageResource::collection(Message::with(['sender', 'receiver','histories.file'])->orderBy('id', 'desc')->get());        
 
-        // return MessageResource::collection(Message::with(['sender', 'receiver', 'files'])->orderBy('id', 'desc')->get()); 
+        return MessageResource::collection(Message::with(['sender', 'receiver', 'files'])->orderBy('id', 'desc')->get()); 
        
     }
     
@@ -40,8 +40,8 @@ class MessageController extends Controller
 
             $message = Message::create([
                 'sender_id' => trim($request['sender_id']),
-                'receiver_id' =>trim($request['receiver_id']),
-                'object' => trim($request['object']),
+                'receiver_id' => trim($request['receiver_id']),
+                'object' => trim($request['object'])
             ]);
 
             return response()->json(['message' => 'message successfully created!','data' => new MessageResource($message),], 201);  
